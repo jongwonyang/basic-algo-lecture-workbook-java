@@ -1,4 +1,4 @@
-package x01;
+package x02;
 
 import java.io.*;
 import java.util.*;

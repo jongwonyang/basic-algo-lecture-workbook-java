@@ -1,4 +1,4 @@
-package x01;
+package x02;
 
 public class BOJ2557 {
     public static void main(String[] args) {

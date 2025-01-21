@@ -1,21 +1,20 @@
-package x01;
+package x02;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ15552 {
+public class BOJ2752 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int TC = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int[] arr = new int[3];
+        for (int i = 0; i < 3; i++) arr[i] = Integer.parseInt(st.nextToken());
+        Arrays.sort(arr);
         StringBuilder sb = new StringBuilder();
-        for (int tc = 1; tc <= TC; tc++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
-            sb.append(a + b).append('\n');
-        }
+        for (int i : arr) sb.append(i).append(' ');
         System.out.println(sb);
     }
 }
