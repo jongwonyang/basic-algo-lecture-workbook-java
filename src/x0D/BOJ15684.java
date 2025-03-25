@@ -8,7 +8,8 @@ import java.util.StringTokenizer;
 public class BOJ15684 {
 
     static int N, M, H;
-    static int[][] board = new int[31][11];
+    static int[][] board = new int[31][11]; // [M][N]
+    static int ans = -1;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +27,30 @@ public class BOJ15684 {
             board[a][b + 1] = 2;
         }
 
-        int ans = 0;
+        for (int lim = 0; lim <= 3; lim++) {
+            func(0, lim);
+            if (ans != -1) break;
+        }
+
+        System.out.println(ans);
+    }
+
+    static void func(int cnt, int lim) {
+        if (cnt == lim) {
+            if (check()) ans = cnt;
+            return;
+        }
+
+        for (int n = 1; n < N; n++) {
+            for (int h = 1; h <= H; h++) {
+                if (board[h][n] != 0 || board[h][n + 1] != 0) continue;
+                board[h][n] = 1;
+                board[h][n + 1] = 2;
+                func(cnt + 1, lim);
+                board[h][n] = 0;
+                board[h][n + 1] = 0;
+            }
+        }
     }
 
     static void printBoard() {
@@ -46,5 +70,16 @@ public class BOJ15684 {
             else if (board[h][n] == 2) n--;
         }
         return n;
+    }
+
+    static boolean check() {
+        boolean res = true;
+        for (int i = 1; i <= N; i++) {
+            if (i != go(i)) {
+                res = false;
+                break;
+            }
+        }
+        return res;
     }
 }
